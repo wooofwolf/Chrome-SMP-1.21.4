@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "chromesmp:block/installation_table_front",
+    "side": "chromesmp:block/installation_table_side",
+    "top": "chromesmp:block/installation_table_top"
+  }
+}

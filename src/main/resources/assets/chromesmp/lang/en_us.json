@@ -1,0 +1,13 @@
+{
+  "item.chromesmp.installation_table": "Installation Table",
+
+  "block.chromesmp.installation_table": "Installation Table",
+
+  "itemgroup.chromesmp.chromesmp_item_group": "Chrome SMP",
+
+  "container.chromesmp.installationtable": "Installation Table",
+
+  "key.category.chromesmp": "Chrome SMP",
+  "key.chromesmp.armor_select_up": "Select Armor Up",
+  "key.chromesmp.armor_select_down": "Select Armor Down"
+}
