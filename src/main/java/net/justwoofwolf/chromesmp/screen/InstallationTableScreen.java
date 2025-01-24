@@ -9,7 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class InstallationTableScreen extends HandledScreen<InstallationTableScreenHandler> {
-    private static final Identifier TEXTURE = Identifier.ofVanilla("textures/gui/container/dispenser.png");
+    private static final Identifier TEXTURE = Identifier.ofVanilla("textures/gui/container/furnace.png");
 
     public InstallationTableScreen(InstallationTableScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
