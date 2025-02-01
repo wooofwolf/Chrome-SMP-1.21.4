@@ -1,31 +1,41 @@
 package net.justwoofwolf.chromesmp.screen;
 
+import net.justwoofwolf.chromesmp.ChromeSMP;
+import net.justwoofwolf.chromesmp.blockentity.custom.InstallationTableBlockEntity;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.ArrayPropertyDelegate;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.FurnaceFuelSlot;
 import net.minecraft.screen.slot.FurnaceOutputSlot;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.math.MathHelper;
 
 public class InstallationTableScreenHandler extends ScreenHandler {
-    public final Inventory inventory;
+    private final Inventory inventory;
+    private final PropertyDelegate propertyDelegate;
 
     // This constructor gets called on the client when the server wants it to open the screenHandler,
     // The client will call the other constructor with an empty Inventory and the screenHandler will automatically
     // sync this empty inventory with the inventory on the server.
     public InstallationTableScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new SimpleInventory(3));
+        this(syncId, playerInventory, new ArrayPropertyDelegate(2), new SimpleInventory(3));
     }
 
     // This constructor gets called from the BlockEntity on the server without calling the other constructor first, the server knows the inventory of the container
     // and can therefore directly provide it as an argument. This inventory will then be synced to the client.
-    public InstallationTableScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory) {
+    public InstallationTableScreenHandler(int syncId, PlayerInventory playerInventory, PropertyDelegate propertyDelegate, Inventory inventory) {
         super(ModScreenHandlers.INSTALLATION_TABLE_SCREEN_HANDLER, syncId);
         checkSize(inventory, 3);
         this.inventory = inventory;
+        checkDataCount(propertyDelegate, 2);
+        this.propertyDelegate = propertyDelegate;
 
         int m;
         int l;
@@ -46,7 +56,6 @@ public class InstallationTableScreenHandler extends ScreenHandler {
             this.addSlot(new Slot(playerInventory, m, 8 + m * 18, 142));
         }
     }
-
 
     @Override
     public ItemStack quickMove(PlayerEntity player, int invSlot) {
@@ -76,5 +85,19 @@ public class InstallationTableScreenHandler extends ScreenHandler {
     @Override
     public boolean canUse(PlayerEntity player) {
         return this.inventory.canPlayerUse(player);
+    }
+
+    public boolean isCrafting() {
+        ChromeSMP.LOGGER.info("Max progress = " + this.propertyDelegate.get(1));
+
+        return propertyDelegate.get(0) > 0;
+    }
+
+    public int getScaledProgress() {
+        int progress = this.propertyDelegate.get(0);
+        int maxProgress = this.propertyDelegate.get(1);
+        int progressArrowSize = 24;
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 }

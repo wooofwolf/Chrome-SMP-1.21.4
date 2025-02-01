@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.justwoofwolf.chromesmp.block.ModBlocks;
 import net.justwoofwolf.chromesmp.blockentity.ModBlockEntities;
 import net.justwoofwolf.chromesmp.item.ModItemGroups;
+import net.justwoofwolf.chromesmp.recipe.ModRecipes;
 import net.justwoofwolf.chromesmp.screen.ModScreenHandlers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,8 @@ public class ChromeSMP implements ModInitializer {
 
 		ModBlocks.registerModBlocks();
 		ModBlockEntities.registerModBlockEntities();
+
+		ModRecipes.registerModRecipes();
 
 		ModScreenHandlers.registerModScreenHandlers();
 	}

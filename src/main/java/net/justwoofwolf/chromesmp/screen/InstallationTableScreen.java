@@ -7,9 +7,11 @@ import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 
 public class InstallationTableScreen extends HandledScreen<InstallationTableScreenHandler> {
     private static final Identifier TEXTURE = Identifier.ofVanilla("textures/gui/container/furnace.png");
+    private static final Identifier BURN_PROGRESS_TEXTURE = Identifier.ofVanilla("container/furnace/burn_progress");
 
     public InstallationTableScreen(InstallationTableScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -21,6 +23,17 @@ public class InstallationTableScreen extends HandledScreen<InstallationTableScre
         int y = (height - backgroundHeight) / 2;
 
         context.drawTexture(RenderLayer::getGuiTextured, TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight, 256, 256);
+
+        renderProgressArrow(context, x, y);
+    }
+
+    private void renderProgressArrow(DrawContext context, int x, int y) {
+        if (handler.isCrafting()) {
+            int l = MathHelper.ceil(this.handler.getScaledProgress() * 24.0F);
+            context.drawGuiTexture(RenderLayer::getGuiTextured, BURN_PROGRESS_TEXTURE, 24, 16, 0, 0, x + 79, y + 34, l, 16);
+
+            //context.drawGuiTexture(RenderLayer::getGuiTextured, BURN_PROGRESS_TEXTURE, 24, 16, 0, 0, x + 79, y + 34, handler.getScaledProgress(), 16);
+        }
     }
 
     @Override

@@ -35,8 +35,6 @@ public class InstallationTableBlock extends BlockWithEntity {
             player.openHandledScreen(screenHandlerFactory);
         }
 
-        player.sendMessage(Text.literal("You are using the installation table"), false);
-
         return ActionResult.SUCCESS;
     }
 
