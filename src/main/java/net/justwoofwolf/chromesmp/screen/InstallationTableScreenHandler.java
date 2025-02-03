@@ -20,30 +20,35 @@ import net.minecraft.util.math.MathHelper;
 public class InstallationTableScreenHandler extends ScreenHandler {
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
+    public final InstallationTableBlockEntity blockEntity;
 
     // This constructor gets called on the client when the server wants it to open the screenHandler,
     // The client will call the other constructor with an empty Inventory and the screenHandler will automatically
     // sync this empty inventory with the inventory on the server.
-    public InstallationTableScreenHandler(int syncId, PlayerInventory playerInventory) {
-        this(syncId, playerInventory, new ArrayPropertyDelegate(2), new SimpleInventory(3));
+    public InstallationTableScreenHandler(int syncId, PlayerInventory inventory, InstallationTableData data) {
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(data.pos()), new ArrayPropertyDelegate(2));
     }
 
     // This constructor gets called from the BlockEntity on the server without calling the other constructor first, the server knows the inventory of the container
     // and can therefore directly provide it as an argument. This inventory will then be synced to the client.
-    public InstallationTableScreenHandler(int syncId, PlayerInventory playerInventory, PropertyDelegate propertyDelegate, Inventory inventory) {
+    public InstallationTableScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
         super(ModScreenHandlers.INSTALLATION_TABLE_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 3);
-        this.inventory = inventory;
-        checkDataCount(propertyDelegate, 2);
-        this.propertyDelegate = propertyDelegate;
+
+        checkSize((Inventory) blockEntity, 2);
+        this.inventory = (Inventory) blockEntity;
+        inventory.onOpen(playerInventory.player);
+        this.propertyDelegate = arrayPropertyDelegate;
+        this.blockEntity = (InstallationTableBlockEntity) blockEntity;
+
+        this.addProperties(propertyDelegate);
 
         int m;
         int l;
 
         // Installation table inventory
-        this.addSlot(new Slot(inventory, 0, 56, 17));
-        this.addSlot(new Slot(inventory, 1, 56, 53));
-        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 2, 116, 35));
+        this.addSlot(new Slot(inventory, 0, 27, 34));
+        this.addSlot(new Slot(inventory, 1, 76, 34));
+        this.addSlot(new FurnaceOutputSlot(playerInventory.player, inventory, 2, 134, 34));
 
         // The player inventory
         for (m = 0; m < 3; ++m) {
@@ -88,15 +93,13 @@ public class InstallationTableScreenHandler extends ScreenHandler {
     }
 
     public boolean isCrafting() {
-        ChromeSMP.LOGGER.info("Max progress = " + this.propertyDelegate.get(1));
-
         return propertyDelegate.get(0) > 0;
     }
 
     public int getScaledProgress() {
         int progress = this.propertyDelegate.get(0);
         int maxProgress = this.propertyDelegate.get(1);
-        int progressArrowSize = 24;
+        int progressArrowSize = 22;
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }

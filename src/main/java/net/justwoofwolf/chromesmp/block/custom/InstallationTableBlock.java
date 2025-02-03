@@ -24,12 +24,8 @@ public class InstallationTableBlock extends BlockWithEntity {
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (world.isClient) return ActionResult.SUCCESS;
 
-        if (!(world.getBlockEntity(pos) instanceof InstallationTableBlockEntity installationTableBlockEntity)) {
-            return super.onUse(state, world, pos, player, hit);
-        }
-
         // Create a screen handler
-        NamedScreenHandlerFactory screenHandlerFactory = state.createScreenHandlerFactory(world, pos);
+        NamedScreenHandlerFactory screenHandlerFactory = (InstallationTableBlockEntity) world.getBlockEntity(pos);
 
         if (screenHandlerFactory != null) {
             player.openHandledScreen(screenHandlerFactory);
