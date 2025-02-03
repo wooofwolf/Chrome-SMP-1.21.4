@@ -3,7 +3,6 @@ package net.justwoofwolf.chromesmp.recipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InstallationRecipe {

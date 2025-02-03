@@ -1,7 +1,6 @@
 package net.justwoofwolf.chromesmp;
 
 import net.fabricmc.api.ModInitializer;
-
 import net.justwoofwolf.chromesmp.block.ModBlocks;
 import net.justwoofwolf.chromesmp.blockentity.ModBlockEntities;
 import net.justwoofwolf.chromesmp.item.ModItemGroups;

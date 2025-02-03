@@ -1,15 +1,12 @@
 package net.justwoofwolf.chromesmp.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.justwoofwolf.chromesmp.ChromeSMP;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
 
 public class InstallationTableScreen extends HandledScreen<InstallationTableScreenHandler> {
     private static final Identifier TEXTURE = Identifier.of(ChromeSMP.MOD_ID, "textures/gui/installation_table_gui.png");
@@ -32,11 +29,6 @@ public class InstallationTableScreen extends HandledScreen<InstallationTableScre
     private void renderProgressArrow(DrawContext context, int x, int y) {
         if (handler.isCrafting()) {
             context.drawTexture(RenderLayer::getGuiTextured, PROGRESS, x+102, y+35, 0, 0, handler.getScaledProgress(), 16, 22, 16);
-
-            //int l = MathHelper.ceil(this.handler.getScaledProgress() * 24.0F);
-            //context.drawGuiTexture(RenderLayer::getGuiTextured, BURN_PROGRESS_TEXTURE, 24, 16, 0, 0, x + 79, y + 34, l, 16);
-
-            //context.drawGuiTexture(RenderLayer::getGuiTextured, BURN_PROGRESS_TEXTURE, 24, 16, 0, 0, x + 79, y + 34, handler.getScaledProgress(), 16);
         }
     }
 
