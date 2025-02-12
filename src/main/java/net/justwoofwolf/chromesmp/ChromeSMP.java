@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.justwoofwolf.chromesmp.block.ModBlocks;
 import net.justwoofwolf.chromesmp.blockentity.ModBlockEntities;
 import net.justwoofwolf.chromesmp.component.ModComponents;
+import net.justwoofwolf.chromesmp.event.EventHandler;
 import net.justwoofwolf.chromesmp.item.ModItemGroups;
 import net.justwoofwolf.chromesmp.item.ModItems;
 import net.justwoofwolf.chromesmp.recipe.ModRecipes;
@@ -28,5 +29,7 @@ public class ChromeSMP implements ModInitializer {
 		ModComponents.registerModComponents();
 
 		ModScreenHandlers.registerModScreenHandlers();
+
+		EventHandler.registerEventHandler();
 	}
 }

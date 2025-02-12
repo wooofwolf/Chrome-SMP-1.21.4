@@ -129,10 +129,6 @@ public class InstallationTableBlockEntity extends BlockEntity implements Extende
         ItemStack newItem = new ItemStack(itemStack.getItem(), getStack(OUTPUT_SLOT).getCount() + itemStack.getCount());
         newItem.set(tag, 1);
 
-        if (newItem.contains(ModComponents.TREE_FELLER_COMPONENT)) {
-            ChromeSMP.LOGGER.info("Item contains tree feller!");
-        }
-
         this.removeStack(ITEM_SLOT, 1);
         this.removeStack(INSTALLATION_SLOT, 1);
 
