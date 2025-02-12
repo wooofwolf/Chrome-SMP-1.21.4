@@ -1,13 +1,16 @@
 package net.justwoofwolf.chromesmp.blockentity.custom;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.justwoofwolf.chromesmp.ChromeSMP;
 import net.justwoofwolf.chromesmp.blockentity.ImplementedInventory;
 import net.justwoofwolf.chromesmp.blockentity.ModBlockEntities;
+import net.justwoofwolf.chromesmp.component.ModComponents;
 import net.justwoofwolf.chromesmp.recipe.ModRecipes;
 import net.justwoofwolf.chromesmp.screen.InstallationTableData;
 import net.justwoofwolf.chromesmp.screen.InstallationTableScreenHandler;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.component.ComponentType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -15,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -96,18 +100,16 @@ public class InstallationTableBlockEntity extends BlockEntity implements Extende
     public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient) return;
 
-        Item inputSlot = getStack(ITEM_SLOT).getItem();
-        Item installationSlot = getStack(INSTALLATION_SLOT).getItem();
+        ItemStack inputSlot = getStack(ITEM_SLOT);
+        ItemStack installationSlot = getStack(INSTALLATION_SLOT);
 
         if (isOutputSlotEmptyOrReceivable()) {
-            ItemStack result = ModRecipes.getResult(inputSlot, installationSlot);
-
-            if (result != null && canInsertAmountIntoOutputSlot(result) && canInsertItemIntoOutputSlot(result.getItem())) {
+            if (ModRecipes.hasResult(inputSlot, installationSlot) && canInsertAmountIntoOutputSlot() && canInsertItemIntoOutputSlot(inputSlot.getItem())) {
                 this.increaseCraftProgress();
                 markDirty(world, pos, state);
 
                 if (hasCraftingFinished()) {
-                    this.craftItem(ModRecipes.getResult(inputSlot, installationSlot));
+                    this.craftItem(ModRecipes.getResult(inputSlot, installationSlot), ModRecipes.getTag(inputSlot, installationSlot));
                     this.resetProgress();
                 }
             } else {
@@ -123,11 +125,18 @@ public class InstallationTableBlockEntity extends BlockEntity implements Extende
         this.progress = 0;
     }
 
-    private void craftItem(ItemStack itemStack) {
+    private void craftItem(ItemStack itemStack, ComponentType<Integer> tag) {
+        ItemStack newItem = new ItemStack(itemStack.getItem(), getStack(OUTPUT_SLOT).getCount() + itemStack.getCount());
+        newItem.set(tag, 1);
+
+        if (newItem.contains(ModComponents.TREE_FELLER_COMPONENT)) {
+            ChromeSMP.LOGGER.info("Item contains tree feller!");
+        }
+
         this.removeStack(ITEM_SLOT, 1);
         this.removeStack(INSTALLATION_SLOT, 1);
 
-        this.setStack(OUTPUT_SLOT, new ItemStack(itemStack.getItem(), getStack(OUTPUT_SLOT).getCount() + itemStack.getCount()));
+        this.setStack(OUTPUT_SLOT, newItem);
     }
 
     private boolean hasCraftingFinished() {
@@ -142,8 +151,8 @@ public class InstallationTableBlockEntity extends BlockEntity implements Extende
         return this.getStack(OUTPUT_SLOT).getItem() == item || this.getStack(OUTPUT_SLOT).isEmpty();
     }
 
-    private boolean canInsertAmountIntoOutputSlot(ItemStack result) {
-        return this.getStack(OUTPUT_SLOT).getCount() + result.getCount() <= getStack(OUTPUT_SLOT).getMaxCount();
+    private boolean canInsertAmountIntoOutputSlot() {
+        return this.getStack(OUTPUT_SLOT).getCount() + 1 <= getStack(OUTPUT_SLOT).getMaxCount();
     }
 
     private boolean isOutputSlotEmptyOrReceivable() {
