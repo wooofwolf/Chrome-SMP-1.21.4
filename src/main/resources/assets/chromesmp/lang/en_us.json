@@ -11,5 +11,6 @@
 
   "key.category.chromesmp": "Chrome SMP",
   "key.chromesmp.armor_select_up": "Select Armor Up",
-  "key.chromesmp.armor_select_down": "Select Armor Down"
+  "key.chromesmp.armor_select_down": "Select Armor Down",
+  "key.chromesmp.activate_installation": "Activate Installation"
 }

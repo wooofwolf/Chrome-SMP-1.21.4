@@ -7,6 +7,7 @@ import net.justwoofwolf.chromesmp.component.ModComponents;
 import net.justwoofwolf.chromesmp.event.EventHandler;
 import net.justwoofwolf.chromesmp.item.ModItemGroups;
 import net.justwoofwolf.chromesmp.item.ModItems;
+import net.justwoofwolf.chromesmp.networking.ModMessages;
 import net.justwoofwolf.chromesmp.recipe.ModRecipes;
 import net.justwoofwolf.chromesmp.screen.ModScreenHandlers;
 import org.slf4j.Logger;
@@ -31,5 +32,7 @@ public class ChromeSMP implements ModInitializer {
 		ModScreenHandlers.registerModScreenHandlers();
 
 		EventHandler.registerEventHandler();
+
+		ModMessages.registerC2SPackets();
 	}
 }
