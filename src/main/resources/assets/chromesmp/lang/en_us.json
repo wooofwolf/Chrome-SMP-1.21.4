@@ -10,7 +10,6 @@
   "container.chromesmp.installationtable": "Installation Table",
 
   "key.category.chromesmp": "Chrome SMP",
-  "key.chromesmp.armor_select_up": "Select Armor Up",
-  "key.chromesmp.armor_select_down": "Select Armor Down",
+  "key.chromesmp.scroll": "Armor Slot Scroll",
   "key.chromesmp.activate_installation": "Activate Installation"
 }

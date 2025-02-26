@@ -2,6 +2,8 @@ package net.justwoofwolf.chromesmp.client;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.justwoofwolf.chromesmp.ChromeSMP;
+import net.justwoofwolf.chromesmp.ChromeSMPClient;
+import net.justwoofwolf.chromesmp.util.StateSaverAndLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderLayer;
@@ -37,7 +39,7 @@ public class ArmorHudOverlay implements HudRenderCallback {
 
         // Render hotbar textures
         drawTexture(context, ARMOR_HOTBAR_TEXTURE, x + 9, y - 66,  82, 22);
-        drawTexture(context, ARMOR_HOTBAR_SELECTION_TEXTURE, x + 8, y - 67, 24, 23);
+        drawTexture(context, ARMOR_HOTBAR_SELECTION_TEXTURE, x + 8 + 20 * ChromeSMPClient.playerData.armorSlotId, y - 67, 24, 23);
 
         // Render armor items
         DefaultedList<ItemStack> armor = client.player.getInventory().armor;

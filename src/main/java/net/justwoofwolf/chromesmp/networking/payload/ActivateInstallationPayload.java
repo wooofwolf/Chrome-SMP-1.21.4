@@ -24,7 +24,7 @@ public record ActivateInstallationPayload(int id) implements CustomPayload {
         return ID;
     }
 
-    public static void receive(MinecraftServer server, ServerPlayerEntity player) {
+    public void receive(MinecraftServer server, ServerPlayerEntity player) {
         EntityType.COW.spawn((ServerWorld)player.getWorld(), player.getBlockPos(), SpawnReason.TRIGGERED);
     }
 }

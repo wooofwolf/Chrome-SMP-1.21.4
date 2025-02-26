@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item TEST_CARTRIDGE = register("test_cartridge");
+    public static final Item HASTE_CARTRIDGE = register("haste_cartridge");
 
     // Register the item
     public static Item register(String name) {

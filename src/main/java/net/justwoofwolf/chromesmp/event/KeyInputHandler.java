@@ -12,8 +12,21 @@ import org.lwjgl.glfw.GLFW;
 public class KeyInputHandler {
     public static final String KEY_CATEGORY_CHROMESMP = "key.category.chromesmp";
     public static final String KEY_ACTIVATE_INSTALLATION = "key.chromesmp.activate_installation";
+    public static final String KEY_SCROLL_UP = "key.chromesmp.scroll";
 
-    public static KeyBinding activateInstallationKey;
+    public static KeyBinding activateInstallationKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+            KEY_ACTIVATE_INSTALLATION,
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_X,
+            KEY_CATEGORY_CHROMESMP
+    ));
+
+    public static KeyBinding scrollKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+            KEY_SCROLL_UP,
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_LEFT_ALT,
+            KEY_CATEGORY_CHROMESMP
+    ));
 
     public static void registerKeyInputs() {
         ClientTickEvents.END_CLIENT_TICK.register(minecraftClient -> {
@@ -26,12 +39,6 @@ public class KeyInputHandler {
     }
 
     public static void register() {
-        activateInstallationKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                KEY_ACTIVATE_INSTALLATION,
-                InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_LEFT_ALT,
-                KEY_CATEGORY_CHROMESMP));
-
         registerKeyInputs();
     }
 }
