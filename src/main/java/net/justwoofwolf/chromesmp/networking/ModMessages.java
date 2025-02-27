@@ -1,14 +1,10 @@
 package net.justwoofwolf.chromesmp.networking;
 
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.justwoofwolf.chromesmp.ChromeSMP;
 import net.justwoofwolf.chromesmp.networking.payload.ActivateInstallationPayload;
 import net.justwoofwolf.chromesmp.networking.payload.ChangeArmorSlotPayload;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 
 public class ModMessages {

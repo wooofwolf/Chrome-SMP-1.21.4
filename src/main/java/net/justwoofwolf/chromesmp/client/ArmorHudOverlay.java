@@ -3,7 +3,6 @@ package net.justwoofwolf.chromesmp.client;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.justwoofwolf.chromesmp.ChromeSMP;
 import net.justwoofwolf.chromesmp.ChromeSMPClient;
-import net.justwoofwolf.chromesmp.util.StateSaverAndLoader;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderLayer;

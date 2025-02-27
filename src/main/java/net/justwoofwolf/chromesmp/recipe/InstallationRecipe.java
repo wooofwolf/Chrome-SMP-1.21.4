@@ -1,22 +1,14 @@
 package net.justwoofwolf.chromesmp.recipe;
 
-import net.justwoofwolf.chromesmp.ChromeSMP;
 import net.justwoofwolf.chromesmp.component.ModComponents;
 import net.justwoofwolf.chromesmp.item.ModItems;
-import net.minecraft.block.Block;
 import net.minecraft.component.ComponentType;
-import net.minecraft.item.AxeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InstallationRecipe {

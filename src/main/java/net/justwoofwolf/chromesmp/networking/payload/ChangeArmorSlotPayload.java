@@ -4,15 +4,11 @@ import net.justwoofwolf.chromesmp.ChromeSMPClient;
 import net.justwoofwolf.chromesmp.networking.ModMessages;
 import net.justwoofwolf.chromesmp.util.PlayerData;
 import net.justwoofwolf.chromesmp.util.StateSaverAndLoader;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.Text;
 
 public record ChangeArmorSlotPayload(int id) implements CustomPayload {
     public static final Id<ChangeArmorSlotPayload> ID = new Id<>(ModMessages.CHANGE_ARMOR_SLOT_ID);

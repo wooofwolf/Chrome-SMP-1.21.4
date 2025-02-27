@@ -3,7 +3,6 @@ package net.justwoofwolf.chromesmp.block.custom;
 import com.mojang.serialization.MapCodec;
 import net.justwoofwolf.chromesmp.blockentity.ModBlockEntities;
 import net.justwoofwolf.chromesmp.blockentity.custom.InstallationTableBlockEntity;
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;

@@ -1,13 +1,9 @@
 package net.justwoofwolf.chromesmp.recipe;
 
-import net.fabricmc.loader.api.FabricLoader;
 import net.justwoofwolf.chromesmp.ChromeSMP;
 import net.justwoofwolf.chromesmp.util.JsonFileHelper;
 import net.minecraft.component.ComponentType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.Identifier;
 
 import java.io.IOException;
 import java.util.ArrayList;

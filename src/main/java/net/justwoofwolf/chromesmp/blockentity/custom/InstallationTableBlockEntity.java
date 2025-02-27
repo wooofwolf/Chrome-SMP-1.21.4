@@ -1,10 +1,8 @@
 package net.justwoofwolf.chromesmp.blockentity.custom;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.justwoofwolf.chromesmp.ChromeSMP;
 import net.justwoofwolf.chromesmp.blockentity.ImplementedInventory;
 import net.justwoofwolf.chromesmp.blockentity.ModBlockEntities;
-import net.justwoofwolf.chromesmp.component.ModComponents;
 import net.justwoofwolf.chromesmp.recipe.ModRecipes;
 import net.justwoofwolf.chromesmp.screen.InstallationTableData;
 import net.justwoofwolf.chromesmp.screen.InstallationTableScreenHandler;
@@ -18,7 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;

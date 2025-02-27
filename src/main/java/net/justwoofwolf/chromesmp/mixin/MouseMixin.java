@@ -1,14 +1,9 @@
 package net.justwoofwolf.chromesmp.mixin;
 
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.justwoofwolf.chromesmp.ChromeSMPClient;
 import net.justwoofwolf.chromesmp.event.KeyInputHandler;
-import net.justwoofwolf.chromesmp.networking.payload.ChangeArmorSlotPayload;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;

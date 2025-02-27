@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import net.fabricmc.loader.api.FabricLoader;
 import net.justwoofwolf.chromesmp.ChromeSMP;
-import net.minecraft.util.Identifier;
 
 import java.io.File;
 import java.io.IOException;
