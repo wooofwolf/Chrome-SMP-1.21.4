@@ -4,12 +4,12 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ExampleMixin",
-    "ItemMixin"
+    "ItemMixin",
+    "MouseMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "MouseMixin"
   ]
 }

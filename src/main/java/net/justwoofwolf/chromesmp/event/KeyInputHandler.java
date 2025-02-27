@@ -3,6 +3,7 @@ package net.justwoofwolf.chromesmp.event;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.justwoofwolf.chromesmp.ChromeSMPClient;
 import net.justwoofwolf.chromesmp.networking.payload.ActivateInstallationPayload;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
@@ -33,7 +34,7 @@ public class KeyInputHandler {
             while (activateInstallationKey.wasPressed()) {
                 minecraftClient.player.sendMessage(Text.literal("Activated installation ability!"), false);
 
-                ClientPlayNetworking.send(new ActivateInstallationPayload(0));
+                ClientPlayNetworking.send(new ActivateInstallationPayload(ChromeSMPClient.playerData.armorSlotId));
             }
         });
     }
