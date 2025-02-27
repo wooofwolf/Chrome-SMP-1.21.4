@@ -21,9 +21,11 @@ public class InstallationRecipe {
 
         switch (installation) {
             case "test_cartridge" -> this.installationItem = ModItems.TEST_CARTRIDGE;
+            case "haste_cartridge" -> this.installationItem = ModItems.HASTE_CARTRIDGE;
         }
 
         switch (output) {
+            case "haste" -> this.output = ModComponents.HASTE_COMPONENT;
             case "tree_feller" -> this.output = ModComponents.TREE_FELLER_COMPONENT;
         }
 

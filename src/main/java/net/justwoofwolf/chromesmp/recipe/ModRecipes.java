@@ -12,6 +12,7 @@ import java.util.List;
 public class ModRecipes {
     public static final List<InstallationRecipe> RECIPE_LIST = new ArrayList<>();
 
+    public static InstallationRecipe HASTE_RECIPE;
     public static InstallationRecipe TREE_FELLER_RECIPE;
 
     public static void registerModRecipes() {
@@ -19,8 +20,10 @@ public class ModRecipes {
 
         String[] fieldNames = {"input", "installation", "output"};
         String[] values = {"axes", "test_cartridge", "tree_feller"};
+        String[] values2 = {"pickaxes", "haste_cartridge", "haste"};
         try {
             JsonFileHelper.writeJson(fieldNames, values, "tree_feller.json");
+            JsonFileHelper.writeJson(fieldNames, values2, "haste.json");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -28,8 +31,12 @@ public class ModRecipes {
         try {
             TREE_FELLER_RECIPE = new InstallationRecipe(JsonFileHelper.readJson("input", "tree_feller.json"),
                     JsonFileHelper.readJson("installation", "tree_feller.json"),
-                    JsonFileHelper.readJson("output", "tree_feller.json")
-                    ,RECIPE_LIST);
+                    JsonFileHelper.readJson("output", "tree_feller.json"),
+                    RECIPE_LIST);
+            HASTE_RECIPE = new InstallationRecipe(JsonFileHelper.readJson("input", "haste.json"),
+                    JsonFileHelper.readJson("installation", "haste.json"),
+                    JsonFileHelper.readJson("output", "haste.json"),
+                    RECIPE_LIST);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,5 +1,7 @@
 {
   "item.chromesmp.test_cartridge": "Test Cartridge",
+  "item.chromesmp.blank_cartridge": "Blank Cartridge",
+  "item.chromesmp.haste_cartridge": "Haste Cartridge",
 
   "item.chromesmp.installation_table": "Installation Table",
 
@@ -8,6 +10,9 @@
   "itemgroup.chromesmp.chromesmp_item_group": "Chrome SMP",
 
   "container.chromesmp.installationtable": "Installation Table",
+
+  "component.chromesmp.haste": "Haste",
+  "component.chromesmp.tree_feller": "Tree Feller",
 
   "key.category.chromesmp": "Chrome SMP",
   "key.chromesmp.scroll": "Armor Slot Scroll",

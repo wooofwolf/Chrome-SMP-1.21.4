@@ -11,6 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     public static final Item TEST_CARTRIDGE = register("test_cartridge");
+    public static final Item BLANK_CARTRIDGE = register("blank_cartridge");
     public static final Item HASTE_CARTRIDGE = register("haste_cartridge");
 
     // Register the item
@@ -25,6 +26,10 @@ public class ModItems {
         ChromeSMP.LOGGER.info("Registering Mod Items for " + ChromeSMP.MOD_ID);
 
         ItemGroupEvents.modifyEntriesEvent(ModItemGroups.CHROMESMP_ITEM_GROUP_KEY)
-                .register((itemGroup) -> itemGroup.add(ModItems.TEST_CARTRIDGE));
+                .register((itemGroup) -> {
+                    itemGroup.add(ModItems.TEST_CARTRIDGE);
+                    itemGroup.add(ModItems.BLANK_CARTRIDGE);
+                    itemGroup.add(ModItems.HASTE_CARTRIDGE);
+                });
     }
 }

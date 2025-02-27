@@ -1,6 +1,7 @@
 package net.justwoofwolf.chromesmp.mixin;
 
 import net.justwoofwolf.chromesmp.component.ModComponents;
+import net.minecraft.component.ComponentType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -14,20 +15,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
+import java.util.Map;
 
 @Mixin(Item.class)
 public class ItemMixin {
     @Inject(at = @At("HEAD"), method = "appendTooltip")
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type, CallbackInfo ci) {
-        if (stack.contains(ModComponents.TREE_FELLER_COMPONENT)) {
-            tooltip.add(Text.literal("Tree Feller").setStyle(Style.EMPTY.withColor(Formatting.DARK_PURPLE).withItalic(true)));
+        for (ComponentType<Integer> component : ModComponents.MOD_COMPONENTS.keySet()) {
+            if (stack.contains(component)) {
+                tooltip.add(Text.translatable("component.chromesmp." + ModComponents.MOD_COMPONENTS.get(component))
+                        .setStyle(Style.EMPTY.withColor(Formatting.DARK_PURPLE).withItalic(true)));
+            }
         }
     }
 
     @Inject(at = @At("HEAD"), method = "hasGlint", cancellable = true)
     public void hasGlint(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.contains(ModComponents.TREE_FELLER_COMPONENT)) {
-            cir.setReturnValue(true);
+        for (ComponentType<Integer> component : ModComponents.MOD_COMPONENTS.keySet()) {
+            if (stack.contains(component)) {
+                cir.setReturnValue(true);
+            }
         }
     }
 }
